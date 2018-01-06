@@ -1,0 +1,20 @@
+
+<div id="breadcrumbs" ng-controller="NavList" ng-init="refresh();">
+	<ul class="breadcrumb">
+    <li ng-repeat="breadcrumb in breadcrumbs.get() track by breadcrumb.path" ng-class="{ active: $last }">
+      <a ng-if="!$last" ng-href="{{ breadcrumb.path }}" ng-bind="breadcrumb.label" class="margin-right-xs"></a>
+      <span ng-if="$last" ng-bind="breadcrumb.label"></span>
+	  <span ng-if="breadcrumbs.get().length > 1">&nbsp;>&nbsp;</span>
+    </li>
+	</ul><!--.breadcrumb-->
+
+	<div id="nav-search">
+		<form class="form-search">
+			<span class="input-icon">
+				<input type="text" ng-model="query" ng-click ="" placeholder="Search ..." class="input search-query"  autocomplete="off" />
+				<i class="icon-search" id="nav-search-icon"></i>
+			</span>
+
+		</form>
+	</div><!--#nav-search-->
+</div>

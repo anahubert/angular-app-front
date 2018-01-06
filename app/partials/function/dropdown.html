@@ -1,0 +1,35 @@
+<div class="row-fluid" ng-controller="Function" ng-init="refresh();">
+	<div class="span12" >
+		<table>
+			<tr>
+				<td><div class="span2 btn-group">
+						<a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#" ng-click="refresh();">
+							Add Function
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<!-- dropdown menu links -->
+							<li ng-repeat="(fidx1, function) in functions">
+								<a href="" id="" ng-click="add(function);"> {{function.name}}
+								</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="" id="">
+									<div><button class="btn btn-small btn-warning" data-toggle="modal" data-target="#NewFunction"><i class="icon-plus-sign-alt"> New function</i></button></div>
+
+								</a>
+							</li>
+						</ul>
+					</div></td>
+			</tr>
+			<tr>
+				<td>
+					<div class="fTag fixed" ng-repeat="(fidx, module_function) in module_functions"><span>{{module_function.name}}</span><i class="icon-remove" ng-click="remove(fidx);"></i></div></td>
+			</tr>
+		</table>
+	</div>
+	<div class="span12">
+		
+	</div>
+</div>

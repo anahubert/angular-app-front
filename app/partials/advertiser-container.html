@@ -1,0 +1,47 @@
+<div ng-controller="AdvertiserContainer" ng-init="refresh()">
+	<div class="navbar navbar-inverse">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a href=""  class="brand">
+					<small>
+						<i class="icon-unlock-alt"></i>
+						UTM 
+					</small>
+				</a><br><!--/.brand-->
+
+
+			</div><!--/.container-fluid-->
+		</div><!--/.navbar-inner-->
+	</div>
+	<div class="container-fluid" id="main-container" >
+		<a id="menu-toggler" href="#"><span></span></a><br>
+		
+		<div id="main-content" class="clearfix">
+
+			<div id="sidebar">
+				<div id="sidebar-shortcuts" ng-include src="'/universal-tag-manager/app/partials/boxes/sidebar-shortcuts.html'"></div><!--#sidebar-shortcuts-->
+				<div id="nav-list" ng-include src="'/universal-tag-manager/app/partials/boxes/nav-list.html'"></div>
+			</div>
+			<div id="page-content" class="clearfix" style="margin-left: 200px;">
+				
+				<div ng-include src="'/universal-tag-manager/app/partials/boxes/breadcrumbs.html'"></div>
+				<div ng-include src="'/universal-tag-manager/app/partials/boxes/headers.html'"></div>
+				<div ng-include src="'/universal-tag-manager/app/partials/boxes/alerts.html'"></div>
+				<div ng-include src="'/universal-tag-manager/app/partials/advertiser/container.html'"></div>
+				
+			</div><!--/#main-content-->
+
+		<pre>Data: {{container| json}}</pre>
+		<pre>Data: {{ui | json}}</pre>
+		<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
+			<i class="icon-double-angle-up icon-only bigger-110"></i>
+		</a><br>
+		</div>
+	</div><!--/.fluid-container#main-container-->
+</div>
+
+	<!--basic scripts-->
+
+
+	<!--inline scripts related to this page-->
+

@@ -1,0 +1,77 @@
+<div class="row-fluid" ng-controller="Module" ng-init="refresh();">
+	<div class="span12">
+		<div class="row-fluid">
+			<div class="span12">	
+				<div id="NewModule" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="NewModuleLabel" aria-hidden="true" style="width: 600px;">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h3 id="NewContainerLabel1" class="success">Module add</h3>
+
+					</div>
+
+					<div class="modal-body" style="height: 800px;">
+
+						<form name="moduleForm" id="moduleForm" ng-model="moduleForm">
+
+							<table>
+
+								<tr>
+									<td>
+
+										Name: 
+
+									</td>
+									<td>
+										<input name="moduleName" type="text" ng-model="module.name" /> 
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Function:
+									</td>
+									<td>
+										
+										<div ng-include src="'/universal-tag-manager/app/partials/function/dropdown.html'"></div>
+									
+									</td>
+								</tr>
+							</table>
+
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+						<button id="submit" ng-click = "save(module, '', ''); set('getContainers', '', '');" ng-model="btnsubmit" type="submit" data-dismiss="modal" aria-hidden="true" class="btn" ng-disabled="form.$invalid || names.indexOf(module.name) != -1" >Save</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<div class="span12">
+				<table>
+					<tr>
+						<td><div class="span2 btn-group">
+								<a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#" ng-click="refresh();">
+									Add Module
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu">
+									<!-- dropdown menu links -->
+									<li ng-repeat="(midx, module) in modules">
+										<a href="" id="" ng-click="add(module); setActionCode(module.id);"> {{module.name}}
+										</a>
+									</li>
+								</ul>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><div class="fTag fixed" ng-repeat="(midx, rule_module) in rule.modules"><span>{{rule_module.name}}</span><i class="icon-remove" ng-click="remove(midx);"></i></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

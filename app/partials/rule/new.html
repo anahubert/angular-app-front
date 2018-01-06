@@ -1,0 +1,73 @@
+<div class="bs-docs-example">
+	<button type="button" ng-click="rule.clicked.rnew = false;" class="close">
+		<i class="icon-remove"></i>
+	</button>
+	<form name="ruleForm" ng-model="ruleForm" role="form">
+		<table class="table" ng-show="rule.clicked.rnew">
+			<tr>
+				<td>
+					Name:
+				</td>
+				<td>
+					<input type="text" class="ruleForm-control" ng-model="rule.name" ng-minlength="3" ng-maxlength="20" name="rname" required/>
+					<span class="error red" ng-show="ruleForm.rname.$error.required">*</span>
+					<span class="error red" ng-show="names.indexOf(rule.name) != -1">(Choosen name already exists.)</span><br>
+					<span class="error red" ng-show="ruleForm.rname.$error.minlength">(Too short!)</span>
+					<span class="error red" ng-show="ruleForm.rname.$error.maxlength">(Too long!)</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Type:
+				</td>
+				<td>
+					<input type="text" class="ruleForm-control" ng-model="rule.type" ng-minlength="3" ng-maxlength="20"  name="rtype" required/>
+					<span class="error red" ng-show="ruleForm.rtype.$error.required">*</span>
+					<span class="error red" ng-show="ruleForm.rtype.$error.minlength">(Too short!)</span>
+					<span class="error red" ng-show="ruleForm.rtype.$error.maxlength">(Too long!)</span>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					Modules:
+				</td>
+				<td>
+					<div ng-include src="'/universal-tag-manager/app/partials/module/dropdown-list.html'"></div>
+				</td>
+			</tr>
+
+			<tr ng-show="">
+				<td>
+
+				</td>
+				<td>
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td>
+					Macros:
+				</td>
+				<td>
+					<div ng-include src="'/universal-tag-manager/app/partials/macro/dropdown-list.html'"></div>
+				</td>
+			</tr>
+
+			<tr ng-show="">
+				<td>
+
+				</td>
+				<td>
+
+				</td>
+			</tr>
+		</table>
+	</form>
+	<div class="footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true" ng-click="rule.clicked.rnew = false;">Cancel</button>
+		<button id="submit" ng-click="$parent.save(rule, '', '', '', '');" ng-model="btnsubmit" type="submit" data-dismiss="modal" aria-hidden="true" class="btn" ng-disabled="names.indexOf(rule.name) != -1" >Save</button>
+		
+	</div>
+</div>

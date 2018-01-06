@@ -1,0 +1,324 @@
+<form name="conteinerForm" ng-model="conteinerForm" class="css-form" id="conteinerForm" novalidate>
+	<div class="page-header position-relative">
+		<h1>
+			Dashboard
+			<small>
+				<i class="icon-double-angle-right"></i>
+				main application editor
+			</small>
+		</h1>
+	</div><!--/.page-header-->
+	<div class="row-fluid">
+		<!--PAGE CONTENT BEGINS HERE-->
+
+		<div class="span7" style="height: 120">
+			<div class="alert alert-block alert-success" ng-show="successDialog" id="alert-success">
+				<button type="button" class="close" data-dismiss="alert">
+					<i class="icon-remove"></i>
+				</button>
+
+				<i class="icon-ok green"></i>
+
+				{{sucessMessage}}
+
+			</div>
+
+			<div class="alert alert-block alert-error" ng-show="failDialog">
+				<button type="button" class="close" data-dismiss="alert">
+					<i class="icon-remove"></i>
+				</button>
+
+				{{failedMessage}}
+
+			</div>
+
+			<div id="fuelux-wizard" class="row-fluid">
+				<ul class="wizard-steps">
+					<li data-target="#step1" class="{{ !conteinerForm.pt_advertiser_id.$error.required | active }}"  style="min-width: 25%; max-width: 25%;">
+						<span class="step">1</span>
+						<span class="title">Advertiser selection</span>
+					</li>
+					<li data-target="#step2" class="{{
+					 !conteinerForm.pt_advertiser_id.$error.required && 
+					 !conteinerForm.pt_page_type.$error.required && 
+					 !conteinerForm.pt_conversion.$error.required && 
+					 !conteinerForm.pt_checkout.$error.required | active }}"  style="min-width: 25%; max-width: 25%;">
+						<span class="step">2</span>
+						<span class="title">General selection</span>
+					</li>
+					<li data-target="#step3" class="{{!conteinerForm.pt_advertiser_id.$error.required && 
+					 !conteinerForm.pt_page_type.$error.required && 
+					 !conteinerForm.pt_conversion.$error.required && 
+					 !conteinerForm.pt_checkout.$error.required && 
+					 !conteinerForm.pt_product_name.$error.required &&
+					 !conteinerForm.pt_product_id.$error.required &&
+					 !conteinerForm.pt_category.$error.required && 
+					 !conteinerForm.subcategories[0].name.$error.required | active }}"  style="min-width: 25%; max-width: 25%;">
+						<span class="step">3</span>
+						<span class="title">Category, product, channel, script</span>
+					</li>
+					<li data-target="#step4" class="{{!conteinerForm.pt_advertiser_id.$error.required && 
+					 !conteinerForm.pt_page_type.$error.required && 
+					 !conteinerForm.pt_conversion.$error.required && 
+					 !conteinerForm.pt_checkout.$error.required && 
+					 !conteinerForm.pt_product_name.$error.required &&
+					 !conteinerForm.pt_product_id.$error.required &&
+					 !conteinerForm.pt_category.$error.required && 
+					 !conteinerForm.subcategories[0].name.$error.required &&
+					 !conteinerForm.pt_action_code.$error.required | active }}"  style="min-width: 25%; max-width: 25%;">
+						<span class="step">4</span>
+						<span class="title">Action code adition</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="space-5"></div>
+
+		<div class="row-fluid">
+			<div class="span12">
+
+
+				<div class="widget-box">
+					<div class="widget-header widget-header-flat widget-header-small header-color-orange ">
+						<h4>
+							<i class="icon-list"></i>
+							<input id="containerName" type="text" name ="conteinerName" placeholder="Enter Conteiner name..." ng-model="containerName" ng-click="startEditCntName()" style="background-color: #ffc657; border: 0;" required />
+							<a href="" ng-show="isEditingCntName" class="icon-ok green" ng-click="endEditCntName()"></a>
+						</h4>
+					</div>
+					<div id="formElements" style="padding-top: 50px; float: left;">
+
+						<div id="advertiser" ng-hide="hideAdvertiser">
+							<label>Advertiser: </label><select ng-options="advertiser for (key, advertiser) in pt_advertisers" name="pt_advertiser_id" ng-model="pt_advertiser_id" ng-change="advSelected(pt_advertiser_id);" required >
+								<option value="" >Select advertiser..</option>
+							</select>
+							<!--<a href="" ng-show="!isAdvertiserSelected" class="icon-ok green" ng-click="endSelectingAdvertiser()"></a>
+							<a href="" ng-show="isAdvertiserSelected" class="icon-pencil" ng-click="startEditAdvertiser()"></a> -->
+						</div>
+
+						<hr>
+
+						<div id="page-types" ng-hide="hidePageTypes">
+							<label>Page type: </label><select	ng-options="page_type for page_type in pt_pagetypes" name="pt_page_type" ng-model="pt_page_type" ng-disabled="isPageTypeSelected" required >
+								<option value="">Select page type..</option>
+							</select>
+							<!--<a href="" ng-show="!isPageTypeSelected" class="icon-ok green" ng-click="endSelectingPageType()"></a>
+							<a href="" ng-show="isPageTypeSelected" class="icon-pencil" ng-click="startEditPageType()"></a>-->
+						</div>
+
+						<div id="conversions" ng-hide="hideConversions">
+							<label>Conversion: </label><select	ng-options="conversion for conversion in pt_conversions" name="pt_conversion" ng-model="pt_conversion" ng-disabled="isConversionSelected" required >
+								<option value="">Select conversion..</option>
+							</select>
+							<!--<a href="" ng-show="!isConversionSelected" class="icon-ok green" ng-click="endSelectingConversion()"></a>
+							<a href="" ng-show="isConversionSelected" class="icon-pencil" ng-click="startEditConversion()"></a>-->
+						</div>
+
+						<div id="checkout" ng-hide="hideCheckout" ng-repeat="checkout in checkouts">
+							<label>Checkout {{$index + 1}}: </label><input id="" type="text" ng-model="checkout.name"  name ="pt_checkout" placeholder="Enter checkout..." ng-click="startEditCheckout()" style="width: 220px; height: 25px;" />
+							<a href="" class="icon-plus-sign" ng-show="!checkout.added" ng-click="addInputCheckout($index)"></a>
+							<a href="" class="icon-minus-sign" ng-show="checkout.added" ng-click="removeInputCheckout($index)"></a>
+						</div>
+
+						<hr>
+
+						<div id="category" ng-hide="hideCategory">
+
+							<label>Category: </label><input id="" type="text" name ="pt_category" placeholder="Enter category..." ng-disabled="isCategoryEntered" ng-click="startEditCategory()" style="width: 220px; height: 25px;" required />
+							<!--<a href="" ng-show="!isCategoryEntered" class="icon-ok green" ng-click="endInputCategory()"></a>
+							<a href="" ng-show="isCategoryEntered" class="icon-pencil" ng-click="startEditCategory()"></a>-->
+						</div>
+
+						<div id="subcategory" ng-hide="hideSubCategory" ng-repeat="subcategory in subcategories">
+
+							<label>Sub category {{$index + 1}}: </label><input id="" type="text" ng-model="subcategory.name"  name ="pt_subcategory" placeholder="Enter sub-category..." ng-click="startEditSubCategory()" style="width: 220px; height: 25px;" required />
+							<a href="" class="icon-plus-sign" ng-show="!subcategory.added" ng-click="addInputSubcategory($index)"></a>
+							<a href="" class="icon-minus-sign" ng-show="subcategory.added" ng-click="removeInputSubcategory($index)"></a>
+						</div>
+
+						<hr>
+
+						<div id="product-name" ng-hide="hideProductName">
+
+							<label>Product name: </label><input id="" type="text" name ="pt_product_name" ng-model="pt_product_name" placeholder="Enter product name..." ng-disabled="isProductNameEntered" ng-click="startEditProductName()" style="width: 220px; height: 25px;" required />
+							<!--<a href="" ng-show="!isProductNameEntered" class="icon-ok green" ng-click="endInputProductName()"></a>
+							<a href="" ng-show="isProductNameEntered" class="icon-pencil" ng-click="startEditProductName()"></a>-->
+						</div>
+
+						<div id="product-id" ng-hide="hideProductId">
+
+							<label>Product ID: </label><input id="" type="text" name ="pt_product_id" ng-model="pt_product_id" placeholder="Enter product id..." ng-disabled="isProductIdEntered" ng-click="startEditProductId()" style="width: 220px; height: 25px;" required />
+							<!--<a href="" ng-show="!isProductIdEntered" class="icon-ok green" ng-click="endInputProductName()"></a>
+							<a href="" ng-show="isProductIdEntered" class="icon-pencil" ng-click="startEditProductId()"></a>-->
+						</div>
+
+						<div id="custom-vars" ng-hide="hideCustomVars" ng-repeat="custom_var in custom_vars">
+							<label>Custom var {{$index + 1}}: </label><input id="" type="text" ng-model="custom_var.name" name ="pt_custom_var" placeholder="Enter custom var..." ng-click="startEditCustomVar()" style="width: 220px; height: 25px;" />
+							<a href="" class="icon-plus-sign" ng-show="!custom_var.added" ng-click="addInputCustomVar($index)"></a>
+							<a href="" class="icon-minus-sign" ng-show="custom_var.added" ng-click="removeInputCustomVar($index)"></a>
+						</div>
+
+						<hr>
+
+						<div id="channel" ng-hide="hideChannel">
+
+							<label>Channel: </label><input id="" type="text" name ="pt_channel" ng-model="pt_channel" placeholder="Enter channel..." ng-disabled="isChannelEntered" ng-click="startEditChannel()" style="width: 220px; height: 25px;" />
+							<!--<a href="" ng-show="!isChannelEntered" class="icon-ok green" ng-click="endInputChannel()"></a>
+							<a href="" ng-show="isChannelEntered" class="icon-pencil" ng-click="startEditChannel()"></a>-->
+						</div>
+
+						<div id="subcategory" ng-hide="hideSubChannel" ng-repeat="subchannel in subchanneles">
+
+							<label>Sub channel {{$index + 1}}: </label><input id="" type="text" ng-model="subchannel.name" name ="pt_subchannel" placeholder="Enter subchannel..." ng-click="startEditSubChannel()" style="width: 220px; height: 25px;" />
+							<a href="" class="icon-plus-sign" ng-show="!subchannel.added" ng-click="addInputSubChannel($index)"></a>
+							<a href="" class="icon-minus-sign" ng-show="subchannel.added" ng-click="removeInputSubChannel($index)"></a>
+						</div>
+						<div id="keyword" ng-hide="hideKeyword">
+
+							<input id="" type="text" name ="pt_keyword" ng-model="pt_keyword" placeholder="Enter keyword..." ng-disabled="isKeywordEntered" ng-click="startEditKeyword()" style="width: 220px; height: 25px;" />
+							<!--<a href="" ng-show="!isKeywordEntered" class="icon-ok green" ng-click="endInputKeyword()"></a>
+							<a href="" ng-show="isKeywordEntered" class="icon-pencil" ng-click="startEditKeyword()"></a>-->
+						</div>
+
+					</div>
+					<div id="action_code" ng-hide="hideActionCode" style="padding-top: 50px; float: left; margin-left: 20px;">
+
+						<div class="action_code-section" ng-show="true" style="min-height: 400px; width: 300px; border: 1px wheat solid; float: left; padding-right: 10px; padding-left: 10px;" >
+
+							<label>Action Code: </label><textarea name="pt_action_code"
+									  ng-model="pt_action_code"
+									  ui-codemirror="editorOptions"
+									  ng-click=""
+									  ng-change="tooltip = 'Please select operation.';" 
+									  required
+									  style="display:none; z-index: -100;">
+							</textarea>
+						</div>
+
+					</div>
+					<br>
+					<br>
+					<div id="formNotValidModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="formNotValidModalLabel" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h3 id="myModalLabel" class="error red">Please fix errors:</h3>
+
+						</div>
+						<div class="modal-body">
+
+							<span class="error red" ng-show="conteinerForm.pt_advertiser_id.$error.required">Advertiser Required!</span><br>
+								<span class="error red" ng-show="conteinerForm.conteinerName.$error.required">Conteiner name Required!</span><br>
+
+								<span class="error red" ng-show="conteinerForm.pt_page_type.$error.required">Page Type Required!</span><br>
+
+								<span class="error red" ng-show="conteinerForm.pt_conversion.$error.required">Conversion Required!</span><br>
+								<!--<span class="error red" ng-show="conteinerForm.pt_conversion.$error.minlength">Conversion too short!</span><br>-->
+
+								<span class="error red" ng-show="conteinerForm.pt_checkout.$error.required">Checkout Required!</span><br>
+								<!--<span class="error red" ng-show="conteinerForm.pt_checkout.$error.maxlength">Checkout Too long!</span><br>-->
+
+								<span class="error red" ng-show="conteinerForm.pt_category.$error.required">Category Required!</span><br>
+								<!--<span class="error red" ng-show="conteinerForm.pt_category.$error.maxlength">Category Too long!</span><br>-->
+
+								<span class="error red" ng-show="conteinerForm.pt_subcategory.$error.required">Sub Category Required!</span><br>
+								<!--<span class="error red" ng-show="conteinerForm.pt_subcategory.$error.maxlength">Sub Category Too long!</span><br>-->
+
+								<span class="error red" ng-show="conteinerForm.pt_product_name.$error.required">Product Name Required!</span><br>
+								<!--<span class="error red" ng-show="conteinerForm.pt_product_name.$error.maxlength">Product Name Too long!</span><br>-->
+
+								<span class="error red" ng-show="conteinerForm.pt_product_id.$error.required">Product ID Required!</span><br>
+								<!--<span class="error red" ng-show="conteinerForm.pt_product_id.$error.maxlength">Product ID Too long!</span><br>-->
+
+								<span class="error red" ng-show="conteinerForm.pt_action_code.$error.required">Action Code Required!</span><br>
+						</div>
+						<div class="modal-footer">
+							<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+						</div>
+					</div>
+					<div id="dialogExportModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="dialogExportLabel" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h3 id="myModalLabel" class="error red">Click to download file:</h3>
+
+						</div>
+						<div class="modal-body">
+
+							<span class="success" ng-show="isExported"><a ngHref="{{fileToExport}}" id="fileToExport">File</a></span><br>
+						</div>
+						<div class="modal-footer">
+							<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+						</div>
+					</div>
+					
+					<!--<span ng-show="!cEdit"><small><i class="icon-hand-left icon-animated-vertical"> Click here to edit.</i></small></span>-->
+
+					<div my-customer></div>
+
+					<div class="widget-toolbar no-border">
+
+					</div>
+
+				</div>
+					
+			</div>
+
+			
+		</div><!--/row-->
+		<div class="row-fluid">
+			<div class="span12">
+				<div id="formIsNotValid" ng-show="!conteinerForm.pt_action_code.$error.required && !conteinerForm.$valid">
+						<button type="button" class="btn btn-small btn-success" data-toggle="modal" data-target="#formNotValidModal" ng-show="!conteinerForm.$valid">
+
+							Save
+							<i class="icon-arrow-right icon-on-right bigger-110"></i>
+						</button>
+					</div>
+					<div id="formIsValid" class="btn-group" ng-show="!conteinerForm.pt_action_code.$error.required && conteinerForm.$valid" style="display: none;">
+						<button type="submit" id="btnSubmitt" ng-click="postConteiner(conteinerForm);" class="btn btn-small btn-success" ng-show="conteinerForm.$valid" style="display: none;">
+							Save
+							<i class="icon-arrow-right icon-on-right bigger-110"></i>
+						</button>
+						<button type="button" id="btnExport" ng-click="exportConteiner();" class="btn btn-small btn-warning" ng-show="conteinerForm.$valid" style="display: none;">
+							Export
+							<i class="icon-download-alt icon-on-right bigger-110"></i>
+						</button>
+						<button type="button" id="btnPublish" ng-click=";" class="btn btn-small btn-info" ng-show="conteinerForm.$valid" style="display: none;">
+							<a ng-href="/utm/data/" style="color:white;" target="blank" href="/utm/data/">Publish</a>
+							<i class="icon-globe icon-on-right bigger-110"></i>
+						</button>
+						<button type="button" id="btnImport" ng-click="importConteiner()" class="btn btn-small btn-danger" ng-show="conteinerForm.$valid" style="display: none;">
+							Import
+							<i class="icon-share-alt icon-on-right bigger-110"></i>
+						</button>
+					</div>
+			</div>
+		</div>
+
+		<div class="hr hr32 hr-dotted"></div>
+
+		<div class="row-fluid">
+			<div class="span5">
+				<div class="widget-box transparent">
+
+				</div><!--/widget-box-->
+			</div>
+
+			<div class="span7">
+
+			</div>
+		</div>
+
+		<div class="hr hr32 hr-dotted"></div>
+
+		<div class="row-fluid">
+			<div class="span6">
+				<!--/widget-box-->
+			</div><!--/span-->
+
+			<div class="span6">
+
+			</div><!--/span-->
+		</div><!--/row-->
+	</div>
+</form>
+{{checkouts | json}}

@@ -1,0 +1,58 @@
+<div class="row-fluid" ng-controller="JSCodeCtrl">
+	
+	<div class="row-fluid">
+		<div class="span5">
+			<button class="btn btn-small btn-danger" ng-click="remove();">
+				<i class="icon-trash"></i>
+			</button>
+			<a target="_blank" ng-href="{{actionCodePixel_Url}}"><button class="btn btn-small btn-info" ng-click="download('intfc', 'interface');">
+				<i class="icon-download"></i>
+			</button></a>
+		</div>
+		<div class="span2">
+			<button class="btn btn-small btn-danger" ng-click="remove();">
+				<i class="icon-trash"></i>
+			</button>
+			<a target="_blank" ng-href="{{actionCodeJS_Url}}"><button class="btn btn-small btn-info" ng-click="">
+				<i class="icon-download"></i>
+			</button></a>
+		</div>
+	</div>
+	<div class="row-fluid">
+	<div class="span5" id="action_code" ng-hide="false" style="float: left; ">
+
+		<div class="action_code-section" ng-show="true" style="min-height: 600px; width: 800px; border: 1px wheat solid; float: left; padding-right: 10px;" >
+
+			<label>Interface </label>
+			<textarea name="actionCodePixel"
+					  ng-model="actionCodePixel"
+					  ui-codemirror="actionCodeOptions"
+					  ng-click="actionCodePixel='blabla'"
+					  ng-change="tooltip = 'Please select operation.';" 
+					  required
+					  style="">
+
+			</textarea>
+		</div>
+
+	</div>
+	<div class="span3" id="action_code" ng-hide="false" style="float: left; ">
+
+		<div class="action_code-section" ng-show="true" style="min-height: 600px; width: 800px; border: 1px wheat solid; float: left; padding-right: 10px;" >
+
+			<label>JavaScript: </label>
+			<textarea name="actionCodeJS"
+					  ng-model="actionCodeJS"
+					  ui-codemirror="actionCodeOptions"
+					  ng-click="actionCodeJS='blabla'"
+					  ng-change="tooltip = 'Please select operation.';" 
+					  required
+					  style="">
+
+			</textarea>
+		</div>
+
+	</div>
+	</div>
+	
+</div>

@@ -1,0 +1,46 @@
+<div ng-controller="NavList" ng-init="refresh();">	
+	<div id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li ng-class="$location.path() == '/universal-tag-manager/advertiser/list' ? 'active' : ''">
+			<a href="/universal-tag-manager/advertiser/list" id="">
+				<i class="icon-user"></i>
+				<span>Advertisers <span class="badge">{{count.advertisers}}</span></span>
+			</a>
+		</li>
+		<li ng-class="$location.path() == '/universal-tag-manager/container/list' ? 'active' : ''">
+			<a href="/universal-tag-manager/container/list" id="">
+				<i class="icon-list-alt"></i>
+				<span>Containers <span class="badge">{{count.containers}}</span></span>
+			</a>
+		</li>
+		
+		<li ng-class="$location.path() == '/universal-tag-manager/rule/list' ? 'active' : ''">
+			<a href="/universal-tag-manager/rule/list" id="">
+				<i class="icon-edit"></i>
+				<span>Rules <span class="badge">{{count.rules}}</span></span>
+			</a>
+		</li>
+		<li ng-class="$location.path() == '/universal-tag-manager/macro/list' ? 'active' : ''">
+			<a href="/universal-tag-manager/macro/list" id="">
+				<i class="icon-tag"></i>
+				<span>Macros <span class="badge">{{count.macros}}</span></span>
+			</a>
+		</li>
+	<li ng-class="$location.path() == '/universal-tag-manager/module/list' ? 'active' : ''">
+			<a href="/universal-tag-manager/module/list" id="">
+				<i class="icon-file-alt"></i>
+				<span>Modules <span class="badge">{{count.modules}}</span></span>
+			</a>
+		</li>
+		<li ng-class="$location.path() == '/universal-tag-manager/function/list' ? 'active' : ''">
+			<a href="/universal-tag-manager/function/list" id="">
+				<i class="icon-file-alt"></i>
+				<span>Functions <span class="badge">{{count.functions}}</span></span>
+			</a>
+		</li>
+			<li class="active" ng-click=""></li>
+
+		</ul><!--.breadcrumb-->
+
+	</div>
+</div>

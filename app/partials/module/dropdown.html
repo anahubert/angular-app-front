@@ -1,0 +1,31 @@
+<div class="row-fluid">
+	<div class="span12">
+		<table>
+			<tr>
+				<td><div class="span2 btn-group">
+						<a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#" ng-click="refresh();">
+							Add Module
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<!-- dropdown menu links -->
+							<li ng-repeat="(midx, module) in modules">
+								<a href="" id="" ng-click="add(module); setActionCode(module.id);"> {{module.name}}
+								</a>
+							<li class="divider"></li>
+							<li>
+								<a href="" id="" ng-click="">
+									<div><button class="btn btn-small btn-info" data-toggle="modal" data-target="#NewModule"><i class="icon-plus-sign-alt"> New module</i></button></div>
+
+								</a>
+							</li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="fTag fixed" ng-repeat="(midx, rule_module) in rule.modules"><span>{{rule_module.name}}</span><i class="icon-remove" ng-click="remove(midx);"></i></div></td>
+			</tr>
+		</table>
+	</div>
+</div>

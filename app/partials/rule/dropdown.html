@@ -1,0 +1,27 @@
+<div>
+	<div>
+		
+			<div class="span2 btn-group">
+				<a class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+					Add Rule
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<!-- dropdown menu links -->
+					<li ng-repeat="rule in rules.rules">
+						<a href="" id="" ng-click="add(rule.data);click('addRule');">{{rule.data.rule_name}}
+						</a>
+					<li class="divider"></li>
+					<li>
+						<a href="" id="" ng-click="">
+							<div><button class="btn btn-small btn-info" ng-click="click('newRule', '');"><i class="icon-plus-sign-alt"> New rule</i></button></div>
+
+						</a>
+					</li>
+				</ul>
+			</div>
+	</div>
+	<br><br>
+	<!--<div class="fTag fixed" ng-repeat="(idr, container_rule) in container_rules"><span>{{container_rule.rule_name}}</span><i class="icon-remove" ng-click="remove(idr);"></i></div>
+-->
+</div>

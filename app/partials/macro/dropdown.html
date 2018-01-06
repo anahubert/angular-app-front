@@ -1,0 +1,31 @@
+<div class="row-fluid">
+	<div class="span12">
+		<table>
+			<tr>
+				<td><div class="span2 btn-group">
+						<a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#" ng-click="refresh();">
+							Add Macro
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<!-- dropdown menu links -->
+							<li ng-repeat="macro in macros">
+								<a href="" id="" ng-click="add(macro);"> {{macro.name}}
+								</a>
+							<li class="divider"></li>
+							<li>
+								<a href="" id="">
+									<div><button class="btn btn-small btn-warning" data-toggle="modal" data-target="#NewMacro"><i class="icon-plus-sign-alt"> New macro</i></button></div>
+
+								</a>
+							</li>
+						</ul>
+					</div></td>
+			</tr>
+			<tr>
+				<td>
+					<div class="fTag fixed" ng-repeat="(midx, rule_macro) in rule.macros"><span>{{rule_macro.name}}</span><i class="icon-remove" ng-click="remove(midx);"></i></div></td>
+			</tr>
+		</table>
+	</div>
+</div>
